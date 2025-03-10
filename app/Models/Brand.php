@@ -20,5 +20,8 @@ class Brand extends Model
         'is_active' => 'boolean',
     ];
 
-    public $timestamps = true;
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
 }
+

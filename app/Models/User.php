@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -19,21 +20,24 @@ class User extends Authenticatable
         'password',
         'img',
         'role',
-        'recently_product_ids',
-        'cart_id'
     ];
 
-    protected $casts = [
-        'recently_product_ids' => 'array',
-    ];
 
-    public function cart()
+    public function carts()
     {
-        return $this->belongsTo(Cart::class);
+        return $this->hasMany(Cart::class);
     }
 
-    public function products()
+    public function orderHistories(){
+        return $this->hasMany(OrderHistory::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public function recentlyProducts(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'recently_product_ids');
+        return $this->belongsToMany(Product::class);
     }
 }

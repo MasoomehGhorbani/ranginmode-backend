@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('order_history_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_history_id')->constrained()->onDelete('set null');
-            $table->foreignId('product_id')->constrained()->onDelete('set null');
-            $table->foreignId('variant_id')->constrained()->onDelete('set null');
+            $table->foreignId('order_history_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('product_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('product_variant_id')->nullable()->constrained()->onDelete('set null');
             $table->integer('quantity')->default(1);
             $table->timestamps();
         });

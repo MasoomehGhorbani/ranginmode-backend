@@ -18,7 +18,6 @@ class OrderHistory extends Model
         'address',
         'authority',
         'tracking_code',
-        'items',
         'status',
         'process',
         'is_checked',
@@ -26,7 +25,6 @@ class OrderHistory extends Model
 
     protected $casts = [
         'address' => 'array',
-        'items' => 'array',
         'is_checked' => 'boolean',
     ];
 
@@ -35,7 +33,7 @@ class OrderHistory extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function items()
+    public function orderHistoryItems()
     {
         return $this->hasMany(OrderHistoryItem::class);
     }

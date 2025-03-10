@@ -25,38 +25,41 @@ class Product extends Model
         'information',
         'images',
         'is_active',
-        'category_id',
-        'product_variant_ids',
+        // 'category_id',
+        // 'product_variant_ids',
         'default_variant_index',
         'brand_id',
         'first_variant_final_price',
     ];
 
-   
+
     protected $casts = [
         'information' => 'array',
         'images' => 'array',
-        'product_variant_ids' => 'array',
+        // 'category_id' => 'array',
+        // 'product_variant_ids' => 'array',
         'is_active' => 'boolean',
     ];
 
-   
-    public function category(): BelongsTo
+
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class, 'category_product');
     }
 
-   
-    public function productVariants(): BelongsToMany
+
+    public function productVariants(): HasMany
     {
-        return $this->belongsToMany(ProductVariant::class);
+        return $this->hasMany(ProductVariant::class);
     }
 
-    /**
-     * Get the brand that the product belongs to.
-     */
     public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
     }
 }

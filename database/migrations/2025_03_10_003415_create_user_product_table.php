@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('user_product', function (Blueprint $table) {
             $table->id();
-            $table->string('content')->nullable(false);
-            $table->foreignId('user_id')->constrained()->onDelete('set null');
-            $table->foreignId('product_id')->constrained()->onDelete('set null');
-            $table->boolean('is_publish')->default(true);
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('user_product');
     }
 };

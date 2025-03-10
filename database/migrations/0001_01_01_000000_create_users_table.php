@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('img')->nullable();
             $table->enum('role', ['admin', 'user'])->default('user');
-            $table->json('recently_product_ids')->nullable();
-            $table->foreignId('cart_id')->nullable()->constrained();
             $table->timestamps();
         });
 

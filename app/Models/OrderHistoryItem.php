@@ -14,7 +14,7 @@ class OrderHistoryItem extends Model
     protected $fillable = [
         'order_history_id',
         'product_id',
-        'variant_id',
+        'product_variant_id',
         'quantity',
     ];
 
@@ -32,7 +32,7 @@ class OrderHistoryItem extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function variant()
+    public function productVariant()
     {
         return $this->belongsTo(ProductVariant::class);
     }

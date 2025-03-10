@@ -33,4 +33,12 @@ class ProductVariant extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function orderHistoryItems(){
+        return $this->hasMany(ProductVariant::class);
+    }
+
+    public function cartItems(){
+        return $this->hasMany(ProductVariant::class);
+    }
 }

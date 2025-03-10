@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2)->required();
             $table->decimal('final_price', 10, 2)->required();
             $table->integer('discount')->required()->min(0)->max(100);
-            $table->foreignId('product_id')->constrained()->onDelete('set null');
+            $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('set null');
             $table->timestamps();
         });
     }

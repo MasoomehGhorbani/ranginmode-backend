@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->required();
-            $table->string('image')->nullable();
-            $table->foreignId('sub_category_id')->nullable()->constrained()->onDelete('set null');
-            $table->boolean('is_active')->default(true);
-            $table->boolean('is_main')->default(false);
+            $table->float('total_price')->default(0);
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->string('guest_id')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('carts');
     }
 };

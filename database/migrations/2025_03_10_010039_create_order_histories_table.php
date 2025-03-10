@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('order_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->string('guest_id')->nullable();
             $table->decimal('total_price',  10, 2);
             $table->json('address')->nullable();

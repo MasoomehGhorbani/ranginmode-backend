@@ -18,10 +18,10 @@ return new class extends Migration
             $table->json('information')->default('[]');
             $table->json('images')->default('[]');
             $table->boolean('is_active')->default(true);
-            $table->foreignId('category_id')->constrained()->onDelete('set null');
-            $table->json('product_variant_ids')->default('[]');
+            // $table->foreignId('category_id')->constrained('categories')->onDelete('set null');
+            // $table->json('product_variant_ids')->default('[]');
             $table->integer('default_variant_index')->default(0);
-            $table->foreignId('brand_id')->constrained()->onDelete('set null');
+            $table->foreignId('brand_id')->nullable()->constrained('brands', 'id')->onDelete('set null');
             $table->decimal('first_variant_final_price', 10, 2)->default(0);
             $table->timestamps();
         });
